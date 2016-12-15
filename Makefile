@@ -1,5 +1,4 @@
 build:
-	echo "building ..."
 	GOOS=linux GOARCH=amd64 go build
 
 try: build
@@ -7,3 +6,6 @@ try: build
 	cd example
 	docker-compose -f example/docker-compose.yml up --build
 
+publish: build
+	docker build -t sgeisbacher/nginx-request-exporter .
+	docker push sgeisbacher/nginx-request-exporter
