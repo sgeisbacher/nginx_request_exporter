@@ -1,0 +1,19 @@
+version: '2'
+services:
+  rprx:
+    build:
+      context: ./rprx
+    ports:
+      - 80:80
+  static-backend:
+    build:
+      context: ./static-backend
+  dynamic-backend:
+    build:
+      context: ./dynamic-backend
+  nginx-request-exporter:
+    build:
+      context: ./nginx-request-exporter
+      dockerfile: Dockerfile
+    ports:
+      - 9147:9147
